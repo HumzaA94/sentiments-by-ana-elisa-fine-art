@@ -206,7 +206,21 @@ nav {
 }
 
 /* GALLERY */
-#gallery { padding: 7rem 6rem; background: var(--cream); }
+#gallery,
+.gallery-section {
+  padding: 7rem 6rem;
+  background: var(--cream);
+}
+
+.gallery-page {
+  padding-top: 72px;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.gallery-page .gallery-section {
+  padding-top: 5rem;
+}
 
 .gallery-header {
   display: flex;
@@ -319,6 +333,13 @@ nav {
 .gallery-cta {
   text-align: center;
   margin-top: 4rem;
+}
+
+.gallery-cta--dual {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /* EXHIBITIONS */
@@ -944,7 +965,10 @@ footer a:hover { color: var(--gold); }
     max-width: 100%;
   }
 
-  #gallery { padding: 5rem 2rem; }
+  #gallery,
+  .gallery-section { padding: 5rem 2rem; }
+
+  .gallery-page .gallery-section { padding-top: 3rem; }
 
   .exhibitions-page,
   .exhibition-article {

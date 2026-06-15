@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Nav() {
   const { pathname } = useLocation();
+  const isGallery = pathname === '/gallery';
   const isExhibitions = pathname.startsWith('/exhibitions');
 
   return (
@@ -10,7 +11,14 @@ export default function Nav() {
         <img src="/sentiments_logo_icon.png" alt="Sentiments by Ana Elisa · fine art" />
       </Link>
       <ul className="nav-links">
-        <li><Link to="/#gallery">Gallery</Link></li>
+        <li>
+          <Link
+            to={isGallery ? '/gallery' : '/#gallery'}
+            className={isGallery ? 'nav-active' : ''}
+          >
+            Gallery
+          </Link>
+        </li>
         <li>
           <Link to="/exhibitions" className={isExhibitions ? 'nav-active' : ''}>
             Exhibitions

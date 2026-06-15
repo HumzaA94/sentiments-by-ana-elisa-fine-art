@@ -1,8 +1,15 @@
+import { Link } from 'react-router-dom';
 import { ARTWORKS, thumbUrl } from '../data/artworks';
 
-export default function Gallery({ onOpenLightbox }) {
+export default function Gallery({
+  artworks = ARTWORKS,
+  onOpenLightbox,
+  sectionId = 'gallery',
+  showViewMore = false,
+  showInquireCta = false,
+}) {
   return (
-    <section id="gallery">
+    <section id={sectionId ?? undefined} className={sectionId ? undefined : 'gallery-section'}>
       <div className="gallery-header">
         <div>
           <p className="section-label">Portfolio</p>
@@ -10,7 +17,7 @@ export default function Gallery({ onOpenLightbox }) {
         </div>
       </div>
       <div className="gallery-grid">
-        {ARTWORKS.map((art, index) => (
+        {artworks.map((art, index) => (
           <div
             key={art.id}
             className="gallery-item"
@@ -43,9 +50,20 @@ export default function Gallery({ onOpenLightbox }) {
           </div>
         ))}
       </div>
-      <div className="gallery-cta">
-        <a href="#contact" className="btn btn-gold">Inquire About Acquiring a Piece</a>
-      </div>
+      {(showViewMore || showInquireCta) && (
+        <div className={`gallery-cta${showViewMore && showInquireCta ? ' gallery-cta--dual' : ''}`}>
+          {showViewMore && (
+            <Link to="/gallery" className="btn btn-gold">
+              View More
+            </Link>
+          )}
+          {showInquireCta && (
+            <a href="/#contact" className="btn btn-gold">
+              Inquire About Acquiring a Piece
+            </a>
+          )}
+        </div>
+      )}
     </section>
   );
 }

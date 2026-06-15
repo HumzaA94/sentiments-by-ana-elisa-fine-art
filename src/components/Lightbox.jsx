@@ -1,7 +1,7 @@
 import { ARTWORKS, thumbUrl } from '../data/artworks';
 
-export default function Lightbox({ index, onClose, onNavigate }) {
-  const art = ARTWORKS[index];
+export default function Lightbox({ artworks, index, onClose, onNavigate }) {
+  const art = artworks[index];
 
   return (
     <div
@@ -44,13 +44,13 @@ export default function Lightbox({ index, onClose, onNavigate }) {
           />
         </div>
         <div className="lightbox-info">
-          <p className="lightbox-num">{index + 1} / {ARTWORKS.length}</p>
+          <p className="lightbox-num">{index + 1} / {artworks.length}</p>
           {art.title && <h3 className="lightbox-title">{art.title}</h3>}
           {art.medium && <p className="lightbox-detail">{art.medium}</p>}
           {art.year && <p className="lightbox-detail">{art.year}</p>}
           {art.description && <p className="lightbox-desc">{art.description}</p>}
           <a
-            href="#contact"
+            href="/#contact"
             className="btn btn-gold lightbox-inquire"
             onClick={onClose}
           >
