@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="hero-image hero-image--logo">
         <div className="hero-logo-frame">
           <img
-            src="/logo.png"
+            src="/sentiments_logo.png"
             alt="Sentiments by Ana Elisa · fine art"
           />
         </div>
