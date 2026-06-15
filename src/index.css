@@ -515,6 +515,13 @@ nav {
   color: var(--gold);
 }
 
+.exhibition-article-subtitle {
+  font-size: 0.92rem;
+  color: var(--charcoal);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
 .exhibition-article-figure {
   margin-bottom: 3rem;
   max-width: 560px;

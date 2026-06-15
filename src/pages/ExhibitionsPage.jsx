@@ -6,6 +6,7 @@ import {
   formatDateRange,
   getExhibitionStatus,
   getExhibitionStatusLabel,
+  getEventDateLabel,
   sortExhibitions,
 } from '../utils/exhibitionHelpers';
 
@@ -39,7 +40,7 @@ export default function ExhibitionsPage() {
                 </span>
                 <h2 className="exhibition-title">{event.title}</h2>
                 <div className="exhibition-viewing">
-                  <span className="exhibition-meta-label">Viewing</span>
+                  <span className="exhibition-meta-label">{getEventDateLabel(event.type)}</span>
                   <p className="exhibition-dates">
                     {formatDateRange(event.startDate, event.endDate)}
                   </p>

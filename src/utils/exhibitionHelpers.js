@@ -38,6 +38,14 @@ export function getExhibitionStatusLabel(startDate, endDate) {
   return 'Past';
 }
 
+export function getEventTypeLabel(type) {
+  return type === 'competition' ? 'Competition' : 'Exhibition';
+}
+
+export function getEventDateLabel(type) {
+  return type === 'competition' ? 'Voting' : 'Viewing';
+}
+
 export function sortExhibitions(exhibitions) {
   return [...exhibitions].sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
 }

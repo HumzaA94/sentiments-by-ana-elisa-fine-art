@@ -1,6 +1,26 @@
 export const EXHIBITIONS = [
   {
+    id: 'peoples-artist-2026',
+    type: 'competition',
+    title: "The People's Artist",
+    subtitle: 'Presented by Johnny Depp',
+    organizer: 'The Art of Elysium',
+    startDate: '2026-05-04',
+    endDate: '2026-08-06',
+    image: '/exhibitions/peoples_artist.jpeg',
+    url: 'https://peoplesartist.org/2026/ana-elisa-cazares',
+    description:
+      'Ana Elisa is competing in The People\'s Artist — a nationwide competition where the winner appears in Artforum Magazine, receives $25,000, and exhibits at The Art of Elysium\'s Salon.',
+    body: [
+      'Ana Elisa is among the artists competing in The People\'s Artist, a nationwide competition presented by Johnny Depp and operated by Colossal in support of The Art of Elysium. The winner will be featured in Artforum Magazine, receive a $25,000 prize, and display their work at The Art of Elysium\'s Salon.',
+      'Her work is dedicated to the preservation of the unspoken freezing raw emotion and fleeting narratives that would otherwise be lost to time. Through this competition, she brings that vision to a national audience — inviting viewers to vote and help carry these stories forward.',
+      'Cast your free daily vote or make an even greater impact through a donation vote, supporting The Art of Elysium in their mission to use art as a catalyst to help people triumph over difficult life challenges.',
+      'Voting runs from May 4 through August 6. Every vote counts — help Ana Elisa advance in the competition.',
+    ],
+  },
+  {
     id: 'harris-county-juried-exhibition',
+    type: 'exhibition',
     title: 'Harris County Juried Exhibition',
     venue: 'Silver Street Studios',
     address: '2000 Edwards St, Houston, TX 77007',

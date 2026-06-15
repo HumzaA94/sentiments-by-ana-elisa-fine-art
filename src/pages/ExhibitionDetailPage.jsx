@@ -2,7 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { getExhibitionById } from '../data/exhibitions';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import { formatDate, formatDateRange, getExhibitionStatus, getExhibitionStatusLabel } from '../utils/exhibitionHelpers';
+import { formatDate, formatDateRange, getExhibitionStatus, getExhibitionStatusLabel, getEventTypeLabel } from '../utils/exhibitionHelpers';
 
 export default function ExhibitionDetailPage() {
   const { id } = useParams();
@@ -13,6 +13,7 @@ export default function ExhibitionDetailPage() {
   }
 
   const status = getExhibitionStatus(event.startDate, event.endDate);
+  const isCompetition = event.type === 'competition';
 
   return (
     <>
@@ -26,8 +27,11 @@ export default function ExhibitionDetailPage() {
           <span className={`exhibition-badge exhibition-badge--inline exhibition-badge--${status}`}>
             {getExhibitionStatusLabel(event.startDate, event.endDate)}
           </span>
-          <p className="section-label">Exhibition</p>
+          <p className="section-label">{getEventTypeLabel(event.type)}</p>
           <h1 className="exhibition-article-title">{event.title}</h1>
+          {event.subtitle && (
+            <p className="exhibition-article-subtitle">{event.subtitle}</p>
+          )}
           <p className="exhibition-article-dates">
             {formatDateRange(event.startDate, event.endDate)}
           </p>
@@ -39,25 +43,40 @@ export default function ExhibitionDetailPage() {
 
         <div className="exhibition-article-layout">
           <aside className="exhibition-article-sidebar">
-            <div className="exhibition-sidebar-block">
-              <span className="exhibition-meta-label">Venue</span>
-              <p>{event.venue}</p>
-              <p>{event.address}</p>
-            </div>
-            <div className="exhibition-sidebar-block">
-              <span className="exhibition-meta-label">Viewing</span>
-              <p>{formatDateRange(event.startDate, event.endDate)}</p>
-            </div>
-            <div className="exhibition-sidebar-block">
-              <span className="exhibition-meta-label">Opening Reception</span>
-              <p>
-                {formatDate(event.receptionDate)} · {event.receptionTime}
-              </p>
-            </div>
-            <div className="exhibition-sidebar-block">
-              <span className="exhibition-meta-label">Curated by</span>
-              <p>{event.curator}</p>
-            </div>
+            {isCompetition ? (
+              <>
+                <div className="exhibition-sidebar-block">
+                  <span className="exhibition-meta-label">Organizer</span>
+                  <p>{event.organizer}</p>
+                </div>
+                <div className="exhibition-sidebar-block">
+                  <span className="exhibition-meta-label">Voting</span>
+                  <p>{formatDateRange(event.startDate, event.endDate)}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="exhibition-sidebar-block">
+                  <span className="exhibition-meta-label">Venue</span>
+                  <p>{event.venue}</p>
+                  <p>{event.address}</p>
+                </div>
+                <div className="exhibition-sidebar-block">
+                  <span className="exhibition-meta-label">Viewing</span>
+                  <p>{formatDateRange(event.startDate, event.endDate)}</p>
+                </div>
+                <div className="exhibition-sidebar-block">
+                  <span className="exhibition-meta-label">Opening Reception</span>
+                  <p>
+                    {formatDate(event.receptionDate)} · {event.receptionTime}
+                  </p>
+                </div>
+                <div className="exhibition-sidebar-block">
+                  <span className="exhibition-meta-label">Curated by</span>
+                  <p>{event.curator}</p>
+                </div>
+              </>
+            )}
             {event.url && (
               <a
                 href={event.url}
@@ -65,7 +84,7 @@ export default function ExhibitionDetailPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Event Listing
+                {isCompetition ? 'Vote Now' : 'Event Listing'}
               </a>
             )}
           </aside>
