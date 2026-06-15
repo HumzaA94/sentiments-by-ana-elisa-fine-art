@@ -1,13 +1,23 @@
+import { Link, useLocation } from 'react-router-dom';
+
 export default function Nav() {
+  const { pathname } = useLocation();
+  const isExhibitions = pathname.startsWith('/exhibitions');
+
   return (
     <nav>
-      <a href="#hero" className="nav-logo">
+      <Link to="/" className="nav-logo">
         <img src="/sentiments_logo_icon.png" alt="Sentiments by Ana Elisa · fine art" />
-      </a>
+      </Link>
       <ul className="nav-links">
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><Link to="/#gallery">Gallery</Link></li>
+        <li>
+          <Link to="/exhibitions" className={isExhibitions ? 'nav-active' : ''}>
+            Exhibitions
+          </Link>
+        </li>
+        <li><Link to="/#about">About</Link></li>
+        <li><Link to="/#contact">Contact</Link></li>
       </ul>
     </nav>
   );

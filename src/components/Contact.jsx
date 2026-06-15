@@ -37,16 +37,16 @@ export default function Contact() {
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="first-name">First Name</label>
-            <input id="first-name" type="text" placeholder="Ana" />
+            <input id="first-name" type="text" placeholder="Enter your first name" />
           </div>
           <div className="form-group">
             <label htmlFor="last-name">Last Name</label>
-            <input id="last-name" type="text" placeholder="Smith" />
+            <input id="last-name" type="text" placeholder="Enter your last name" />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder="you@example.com" />
+          <input id="email" type="email" placeholder="Enter your email" />
         </div>
         <div className="form-group">
           <label htmlFor="subject">Subject</label>
@@ -61,7 +61,7 @@ export default function Contact() {
         </div>
         <div className="form-group">
           <label htmlFor="message">Message</label>
-          <textarea id="message" placeholder="Tell Ana about your interest…" />
+          <textarea id="message" placeholder="Tell Ana Elisa about your interest…" />
         </div>
         <button type="submit" className="btn">Send Message</button>
         {submitted && (
