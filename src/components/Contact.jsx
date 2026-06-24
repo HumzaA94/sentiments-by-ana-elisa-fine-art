@@ -30,7 +30,13 @@ export default function Contact() {
           </div>
         </div>
         <div className="social-links">
-          <a href="#">Instagram</a>
+          <a
+            href="https://www.instagram.com/sentiments_by_ana_elisa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram
+          </a>
           <a
             href="https://www.wivla.org/member-directory#!biz/id/6a25ae0f10e35f2c1306d306"
             target="_blank"

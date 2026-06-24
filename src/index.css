@@ -1327,6 +1327,10 @@ footer a:hover { color: var(--gold); }
     padding: 5rem 2rem;
   }
 
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
   footer {
     flex-direction: column;
     gap: 1rem;
