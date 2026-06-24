@@ -863,6 +863,11 @@ nav {
   background: var(--cream);
 }
 
+#contact > div,
+#contact > form {
+  min-width: 0;
+}
+
 .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
 
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -919,6 +924,8 @@ nav {
   font-family: var(--serif);
   font-size: 1.05rem;
   color: var(--charcoal);
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .contact-info-link {
