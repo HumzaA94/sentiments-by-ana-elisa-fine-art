@@ -2,7 +2,7 @@ export function thumbUrl(id, size) {
   return `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
 }
 
-export const HOME_GALLERY_PREVIEW_COUNT = 29;
+export const HOME_GALLERY_PREVIEW_COUNT = 10;
 
 export const ARTWORKS = [
   { id: '1z0W9y-JCWHRbUmf9A1xGDAk6ZI6G4eI_', title: '', medium: '', year: '2026', description: '' },

@@ -3,7 +3,7 @@ import { ARTWORKS, HOME_GALLERY_PREVIEW_COUNT } from '../data/artworks';
 import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import Divider from '../components/Divider';
-import Gallery from '../components/Gallery';
+import HomeGallerySlideshow from '../components/HomeGallerySlideshow';
 import About from '../components/About';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
@@ -22,10 +22,9 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <Divider />
-      <Gallery
+      <HomeGallerySlideshow
         artworks={previewArtworks}
         onOpenLightbox={openLightbox}
-        showViewMore={ARTWORKS.length > HOME_GALLERY_PREVIEW_COUNT}
       />
       <Divider />
       <About />

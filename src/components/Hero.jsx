@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Hero() {
   return (
     <section id="hero">
@@ -17,7 +19,7 @@ export default function Hero() {
           presence, and meaning into the spaces where life unfolds. Explore the collection
           and inquire about acquiring a piece.
         </p>
-        <a href="#gallery" className="btn hero-cta">View the Gallery</a>
+        <Link to="/gallery" className="btn hero-cta">View the Gallery</Link>
       </div>
       <div className="hero-image hero-image--logo">
         <div className="hero-logo-frame">
