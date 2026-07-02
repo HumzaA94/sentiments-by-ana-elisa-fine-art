@@ -734,6 +734,12 @@ nav {
 }
 
 /* ABOUT */
+.about-page {
+  padding-top: 72px;
+  background: var(--warm-white);
+  min-height: 100vh;
+}
+
 #about {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -940,6 +946,19 @@ nav {
   color: #7a8a5a;
   margin-top: 0.5rem;
   letter-spacing: 0.06em;
+}
+
+.form-error {
+  font-size: 0.88rem;
+  color: #9a4a4a;
+  margin-top: 0.5rem;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.contact-form .btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .social-links {
@@ -1305,6 +1324,10 @@ footer a:hover { color: var(--gold); }
   .exhibitions-page,
   .exhibition-article {
     padding: calc(72px + 3rem) 2rem 5rem;
+  }
+
+  .about-page #about {
+    padding-top: 3rem;
   }
 
   .exhibition-article-layout {

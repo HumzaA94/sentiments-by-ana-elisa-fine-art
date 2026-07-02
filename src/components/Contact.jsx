@@ -1,11 +1,69 @@
 import { useState } from 'react';
 
-export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+const CONTACT_EMAIL = 'SentimentsbyAnaElisa@gmail.com';
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
-  const handleSubmit = (event) => {
+const initialFormState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  subject: '',
+  message: '',
+};
+
+export default function Contact() {
+  const [formData, setFormData] = useState(initialFormState);
+  const [status, setStatus] = useState('idle');
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setFormData((current) => ({ ...current, [id]: value }));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    setStatus('submitting');
+    setFeedbackMessage('');
+
+    const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+
+    try {
+      const response = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: formData.subject || 'New inquiry from Sentiments by Ana Elisa',
+          _replyto: formData.email,
+          _url: `${window.location.origin}${window.location.pathname}#contact`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      });
+
+      const result = await response.json();
+      const isSuccess = result.success === true || result.success === 'true';
+
+      if (!response.ok || !isSuccess) {
+        throw new Error(result.message || 'Unable to send your message right now.');
+      }
+
+      setStatus('success');
+      setFeedbackMessage('Message sent. Ana will be in touch soon.');
+      setFormData(initialFormState);
+    } catch (error) {
+      setStatus('error');
+      setFeedbackMessage(
+        error.message || 'Something went wrong. Please try again or email Ana directly.',
+      );
+    }
   };
 
   return (
@@ -46,24 +104,50 @@ export default function Contact() {
           </a>
         </div>
       </div>
-      <form className="contact-form" onSubmit={handleSubmit}>
+      <form className="contact-form" onSubmit={handleSubmit} noValidate>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="first-name">First Name</label>
-            <input id="first-name" type="text" placeholder="Enter your first name" />
+            <label htmlFor="firstName">First Name</label>
+            <input
+              id="firstName"
+              type="text"
+              placeholder="Enter your first name"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="form-group">
-            <label htmlFor="last-name">Last Name</label>
-            <input id="last-name" type="text" placeholder="Enter your last name" />
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Enter your last name"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder="Enter your email" />
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="form-group">
           <label htmlFor="subject">Subject</label>
-          <select id="subject" defaultValue="">
+          <select
+            id="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select…</option>
             <option>Acquiring for home</option>
             <option>Acquiring for business / commercial space</option>
@@ -74,11 +158,22 @@ export default function Contact() {
         </div>
         <div className="form-group">
           <label htmlFor="message">Message</label>
-          <textarea id="message" placeholder="Tell Ana Elisa about your interest…" />
+          <textarea
+            id="message"
+            placeholder="Tell Ana Elisa about your interest…"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <button type="submit" className="btn">Send Message</button>
-        {submitted && (
-          <p className="form-success">✓ Message sent. Ana will be in touch.</p>
+        <button type="submit" className="btn" disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Sending…' : 'Send Message'}
+        </button>
+        {status === 'success' && (
+          <p className="form-success">✓ {feedbackMessage}</p>
+        )}
+        {status === 'error' && (
+          <p className="form-error">{feedbackMessage}</p>
         )}
       </form>
     </section>

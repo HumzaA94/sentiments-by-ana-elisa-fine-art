@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import GalleryPage from './pages/GalleryPage';
 import ExhibitionsPage from './pages/ExhibitionsPage';
 import ExhibitionDetailPage from './pages/ExhibitionDetailPage';
+import AboutPage from './pages/AboutPage';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/exhibitions" element={<ExhibitionsPage />} />
         <Route path="/exhibitions/:id" element={<ExhibitionDetailPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
   );

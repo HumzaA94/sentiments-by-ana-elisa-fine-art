@@ -4,7 +4,6 @@ import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import Divider from '../components/Divider';
 import HomeGallerySlideshow from '../components/HomeGallerySlideshow';
-import About from '../components/About';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Lightbox from '../components/Lightbox';
@@ -27,7 +26,6 @@ export default function HomePage() {
         onOpenLightbox={openLightbox}
       />
       <Divider />
-      <About />
       <Contact />
       <Footer />
       {lightboxIndex !== null && (

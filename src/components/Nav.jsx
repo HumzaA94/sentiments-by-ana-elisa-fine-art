@@ -3,8 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Nav() {
   const { pathname } = useLocation();
+  const isHome = pathname === '/';
   const isGallery = pathname === '/gallery';
   const isExhibitions = pathname.startsWith('/exhibitions');
+  const isAbout = pathname === '/about';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -31,6 +33,11 @@ export default function Nav() {
           </Link>
         </li>
         <li>
+          <Link to="/" className={isHome ? 'nav-active' : ''} onClick={closeMenu}>
+            Home
+          </Link>
+        </li>
+        <li>
           <Link to="/gallery" className={isGallery ? 'nav-active' : ''} onClick={closeMenu}>
             Gallery
           </Link>
@@ -44,7 +51,11 @@ export default function Nav() {
             Exhibitions
           </Link>
         </li>
-        <li><Link to="/#about" onClick={closeMenu}>About</Link></li>
+        <li>
+          <Link to="/about" className={isAbout ? 'nav-active' : ''} onClick={closeMenu}>
+            About
+          </Link>
+        </li>
         <li><Link to="/#contact" onClick={closeMenu}>Contact</Link></li>
       </ul>
       <button
