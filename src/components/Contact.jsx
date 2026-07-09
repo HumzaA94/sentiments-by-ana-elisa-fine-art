@@ -102,6 +102,13 @@ export default function Contact() {
           >
             WiVLA
           </a>
+          <a
+          href="https://www.sawyeryards.com/tenant/sentiments-by-ana-elisa-fine-art"
+          target="_blank"
+          rel="noopener noreferrer"
+          >
+            Sawyer Yards
+          </a>
         </div>
       </div>
       <form className="contact-form" onSubmit={handleSubmit} noValidate>
